@@ -42,6 +42,9 @@ namespace KingICT.Academy.Web.Controllers
         {
             var response = await _studentService.GetStudents();
 
+
+
+
             return View(response.Students);
            
 

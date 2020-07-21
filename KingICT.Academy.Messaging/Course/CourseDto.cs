@@ -1,16 +1,22 @@
-﻿namespace KingICT.Academy.Messaging.Course
+﻿using KingICT.Academy.Model;
+using System.Collections.Generic;
+
+namespace KingICT.Academy.Messaging.Course
 {
     public class CourseDto
     {
         public string Name { get; set; }
 
+        public ICollection<StudentCourse> StudentCourses { get; set; }
+
         public CourseDto()
         {
         }
 
-        public CourseDto(string name)
+        public CourseDto(string name, ICollection<StudentCourse> studentCourses)
         {
             Name = name;
+            StudentCourses = studentCourses;
         }
     }
 }

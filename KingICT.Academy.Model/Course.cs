@@ -13,9 +13,10 @@ namespace KingICT.Academy.Model
         {
         }
 
-        public Course(string name)
+        public Course(string name, ICollection<StudentCourse> studentCourses)
         {
             Name = name;
+            StudentCourses = studentCourses;
         }
     }
 }

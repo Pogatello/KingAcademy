@@ -19,11 +19,13 @@ namespace KingICT.Academy.Model
 
         }
 
-        public Student(string firstName, string lastName, DateTime birthDate)
+        public Student(string firstName, string lastName, DateTime birthDate, ICollection<StudentCourse> studentCourses)
         {
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;
+
+            StudentCourses = studentCourses;
         }
 
     }

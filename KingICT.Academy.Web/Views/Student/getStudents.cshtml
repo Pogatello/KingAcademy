@@ -36,9 +36,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
+            <td>
+                @foreach (var c in @item.StudentCourses)
+                {
+                <span>@c.Course.Name  , </span>
+                }
+            </td>
            
 
-        </tr>
+            </tr>
 }
     </tbody>
 </table>

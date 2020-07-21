@@ -24,7 +24,7 @@ namespace KingICT.Academy.Repository
 
         public async Task<IEnumerable<Course>> GetAll()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.Courses.Include(s => s.StudentCourses).ThenInclude(a => a.Student).ToListAsync();
         }
     }
 }
