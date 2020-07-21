@@ -1,0 +1,38 @@
+﻿@model KingICT.Academy.Messaging.Course.CourseDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Course", FormMethod.Post))
+{
+    <div>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <input type="submit" value="Create" />
+    </div>
+}
+
+<div>
+    <ul id="courses">
+    </ul>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        var url = window.location.origin + '/api/CourseApi';
+        $.getJSON(url, function (data) {
+            var html = "";
+            $.each(data, function (key, value) {
+                html += '<li>' + value.name + '</li>';
+            });
+            $("#courses").html(html);
+        });
+    </script>
+
+}
+
