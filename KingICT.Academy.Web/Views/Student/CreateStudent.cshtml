@@ -29,8 +29,27 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                @{
+                    var count = Enumerable.Count(ViewBag.AllCourses);
+                    foreach (var item in ViewBag.AllCourses)
+                    {
+                        <input type="checkbox" name="selectedCourses" value="@item.Id.ToString()" />
+                        @item.Name 
+                        if (--count > 0)
+                        {
+                            @:|
+                        }
+                        }
+                    }
+
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
         </form>
     </div>
 </div>

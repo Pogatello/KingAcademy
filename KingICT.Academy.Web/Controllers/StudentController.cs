@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KingICT.Academy.Contract;
+using KingICT.Academy.Messaging.Common;
+using KingICT.Academy.Messaging.Course;
 using KingICT.Academy.Messaging.Student;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,23 +15,44 @@ namespace KingICT.Academy.Web.Controllers
 
 
         private readonly IStudentService _studentService;
+        private readonly ICourseService _courseService;
 
-        public StudentController(IStudentService studentService)
+        public StudentController(IStudentService studentService, ICourseService courseService)
         {
             _studentService = studentService;
+            _courseService = courseService;
         }
 
 
-        public IActionResult CreateStudent()
+        public async Task<IActionResult> CreateStudent()
         {
+            
+
+
+            GetCoursesResponse response = await _courseService.GetAll(new BasicRequest());
+
+            ViewBag.AllCourses = response.Courses;
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent(StudentDto student)
+        public async Task<IActionResult> CreateStudent(StudentDto student, List<string> selectedCourses)
         {
             var request = new CreateStudentRequest();
+
+          /*  foreach(var id in selectedCourses)
+            {
+                student.StudentCourses.Add());
+            }
+            */
+            
+
+
             request.Student = student;
+
+            
+
 
 
            await _studentService.Create(request);
